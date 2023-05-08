@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BMI Calculator</title>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<h1>BMI Calculator</h1>
+		<form>
+			<label for="weightInput">Weight (kg):</label>
+			<input type="number" id="weightInput" required>
+			<label for="heightInput">Height (cm):</label>
+			<input type="number" id="heightInput" required>
+			<button type="button" id="calculateBtn">Calculate BMI</button>
+		</form>
+		<p id="result"></p>
+
+      <script>
+        
+        const weightInput = document.getElementById("weightInput");
+        const heightInput = document.getElementById("heightInput");
+        const calculateBtn = document.getElementById("calculateBtn");
+        const result = document.getElementById("result");
+
+function calculateBMI() {
+	const weight = parseFloat(weightInput.value);
+	const height = parseFloat(heightInput.value) / 100;
+	const bmi = weight / (height * height);
+	result.textContent = `Your BMI is ${bmi.toFixed(1)}. ${getBMIClassification(bmi)}`;
+}
+
+function getBMIClassification(bmi) {
+	if (bmi < 18.5) {
+		return "You are underweight.";
+	} else if (bmi < 25) {
+		return "You are at a healthy weight.";
+	} else if (bmi < 30) {
+		return "You are overweight.";
+	} else {
+		return "You are obese.";
+	}
+}
+
+calculateBtn.addEventListener("click", calculateBMI);
+</script>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
